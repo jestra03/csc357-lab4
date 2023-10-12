@@ -1,0 +1,3 @@
+Hello
+My name is Josh
+I am a student in CSC 357
