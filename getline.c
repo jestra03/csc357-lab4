@@ -30,13 +30,15 @@ int main(int argc, char *argv[]) {
         chars0 = getline(&b0, &bufsize, fp);
         if (chars0 == -1) {
                 printf("could not read line");
-                return -1;
+                fclose(fp);
+		return -1;
         }
 
 	chars1 = getline(&b1, &bufsize, fp);
 	if (chars1 == -1) {
 		remove_newline(b0, chars1);
 		printf("%s", b0);
+		fclose(fp);
 		return -1;
 	}
 
