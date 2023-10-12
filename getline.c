@@ -18,6 +18,10 @@ int main(int argc, char *argv[]) {
 	char *b1 = buffer1;
 	ssize_t chars1 = 0;	
 
+	char tbuffer[bufsize];
+	char *b2 = tbuffer;
+	ssize_t tchars = 0;
+
 	if (fp == NULL) {
 		printf("File Operation Unsuccessful\n");
 		return -1;
@@ -38,10 +42,25 @@ int main(int argc, char *argv[]) {
 
 
 	// while loop
+	while (1) {
+		tchars = getline(&b2, &bufsize, fp);
+		if (tchars == -1) {
+			break;
+		}
+		chars0 = chars1;
+		strcpy(buffer0, buffer1);
+		chars1 = tchars;
+		strcpy(buffer1, tbuffer);
+	}	
 	
-	fclose(fp);
+	remove_newline(b0, chars0);
+	remove_newline(b1, chars1);
+	printf("%s\n%s\n", b0, b1);
 
+	fclose(fp);
+	return 0;
 }
+
 ssize_t remove_newline(char *buffer, ssize_t input) {
 	if (buffer[input - 1] == '\n') {
 		buffer[input - 1] = '\0';
