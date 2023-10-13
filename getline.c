@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
         chars0 = getline(&b0, &bufsize, fp);
         if (chars0 == -1) {
-                printf("could not read line");
+                // printf("empty or could not read line");
                 fclose(fp);
 		return -1;
         }
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 	}
 
 
-	// while loop
+	// getline until end of file, save last two lines in process
 	while (1) {
 		tchars = getline(&b2, &bufsize, fp);
 		if (tchars == -1) {
