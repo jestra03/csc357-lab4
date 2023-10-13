@@ -23,13 +23,13 @@ int main(int argc, char *argv[]) {
 	ssize_t tchars = 0;
 
 	if (fp == NULL) {
-		printf("File Operation Unsuccessful\n");
+		perror("File Operation Unsuccessful\n");
 		return -1;
 	}
 
         chars0 = getline(&b0, &bufsize, fp);
         if (chars0 == -1) {
-                // printf("empty or could not read line");
+                // perror("empty or could not read line");
                 fclose(fp);
 		return -1;
         }
