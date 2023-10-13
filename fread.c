@@ -2,28 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[]) {
-	FILE *fp;  // file pointer
-	char *endptr;	
-	size_t BUFFER_SIZE = strtol(argv[2], &endptr, 10);
-	if (*endptr != '\0') {
-		printf("Invalid Arg\n");
-		return -1;
-	}	
-	char buffer[BUFFER_SIZE];
-	size_t characters;
+#define BUFFER_SIZE 8192
 
-	fp = fopen(argv[1], "rb");
+int main() {
+	FILE *fp;  // file pointer
+	char buffer[BUFFER_SIZE];
+	size_t bytes;  // bytes read
+
+	fp = fopen("/usr/lib/locale/locale-archive", "rb");
 	if (fp == NULL) {
 		printf("File Operation unsuccessful\n");
 		return -1;
 	}
 
-	characters = fread(buffer, 1, BUFFER_SIZE, fp);
-	if (characters == -1) {
-		printf("Error file not read\n");
-		fclose(fp);
-		return -1;
+	while ((bytes = fread(buffer, 1, BUFFER_SIZE, fp)) > 0) {
+		// do nothing, just read
 	}		
 	fclose(fp);
 	return 0;
