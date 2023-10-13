@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	int fd;  // file descriptor
 	char *endptr;	
 	int BUFFER_SIZE = strtol(argv[2], &endptr, 10);
-	if (endptr == '\0') {
+	if (endptr == NULL) {
 		printf("Invalid arg");
 		return -1;
 	}	
@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
 	ssize_t characters;
 
 	fd = open(argv[1], O_RDONLY);
-
 	if (fd == -1) {
 		printf("File Operation unsuccessful");
 		return -1;
