@@ -4,11 +4,11 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define BUFFER_SIZE 8192
+#define SIZE 8192
 
 int main() {
 	int fd;  // file descriptor
-	char buffer[BUFFER_SIZE];
+	char buffer[SIZE];
 	ssize_t bytes;  // bytes read
 
 	fd = open("/usr/lib/locale/locale-archive", O_RDONLY);
@@ -17,7 +17,7 @@ int main() {
 		return -1;
 	}
 
-	while ((bytes = read(fd, buffer, BUFFER_SIZE)) > 0) {
+	while ((bytes = read(fd, buffer, SIZE)) > 0) {
 		// do nothing, just read
 	}		
 	close(fd);
